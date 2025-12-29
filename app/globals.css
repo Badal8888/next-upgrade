@@ -1,26 +1,91 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+/* CSS Variables for Navbar Height */
+:root {
+  --navbar-height: 140px;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --navbar-height: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --navbar-height: 100px;
+  }
+}
+
+.page-container {
+  min-height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8f9fa;
+}
+
+.page-container h1 {
+  font-size: 48px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  }
+
+.page-container p {
+  font-size: 18px;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
 }

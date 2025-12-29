@@ -1,0 +1,203 @@
+/* Loading Container */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+/* Loading Logo */
+.loading-logo {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  animation: logoSettle 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.8s forwards;
+}
+
+/* Chrome-style logo settle animation */
+@keyframes logoSettle {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Inner White Circle */
+.inner-circle {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ffffff;
+  z-index: 1;
+  box-shadow: 0 0 0 2px rgba(0, 149, 170, 0.1);
+}
+
+/* Arc Container */
+.arc-container {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  z-index: 3;
+}
+
+/* Teal C-shaped arcs */
+.arc {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 22px solid #0095AA;
+  border-radius: 50%;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* Left C arc - slides in from left */
+.arc-left {
+  border-right: none;
+  clip-path: polygon(0% 12%, 50% 12%, 50% 88%, 0% 88%);
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  animation: arcSlideInLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+}
+
+/* Right C arc - slides in from right */
+.arc-right {
+  border-left: none;
+  clip-path: polygon(50% 12%, 100% 12%, 100% 88%, 50% 88%);
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  animation: arcSlideInRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+}
+
+@keyframes arcSlideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes arcSlideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Dots Container */
+.dots-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Chrome-style Dot */
+.chrome-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #000000;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  animation: chromeDotAnimation 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Chrome-style dot animation: rotation -> formation */
+@keyframes chromeDotAnimation {
+  /* Phase 1: Rotation (0% - 60%) - smooth clockwise rotation */
+  0% {
+    transform: translate(-50%, -50%) 
+               rotate(calc(var(--angle) * 1deg)) 
+               translateY(calc(var(--initial-radius) * -1)) 
+               rotate(calc(var(--angle) * -1deg));
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, -50%) 
+               rotate(calc(var(--angle) * 1deg + 360deg)) 
+               translateY(calc(var(--initial-radius) * -1)) 
+               rotate(calc(var(--angle) * -1deg - 360deg));
+    opacity: 1;
+  }
+  /* Phase 2: Formation - move inward with deceleration (60% - 85%) */
+  75% {
+    transform: translate(calc(var(--final-x) - 50%), calc(var(--final-y) - 50%)) 
+               scale(1.15);
+    opacity: 1;
+  }
+  85% {
+    transform: translate(calc(var(--final-x) - 50%), calc(var(--final-y) - 50%)) 
+               scale(1.05);
+    opacity: 1;
+  }
+  /* Phase 3: Settle with subtle bounce (85% - 100%) */
+  100% {
+    transform: translate(calc(var(--final-x) - 50%), calc(var(--final-y) - 50%)) 
+               scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .loading-logo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .inner-circle {
+    width: 105px;
+    height: 105px;
+  }
+
+  .c-border {
+    width: 180px;
+    height: 180px;
+  }
+
+  .c-shape {
+    width: 180px;
+    height: 180px;
+    border-width: 14px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .dots-container .dot:nth-child(1) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
