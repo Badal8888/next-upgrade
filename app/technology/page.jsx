@@ -13,6 +13,7 @@ const Technology = () => {
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (hash) setActiveSection(hash);
   }, []);
 
